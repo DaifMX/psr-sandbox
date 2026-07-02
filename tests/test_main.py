@@ -17,13 +17,19 @@ def test_version_endpoint():
 def test_hello_default():
     res = client.get("/api/hello")
     assert res.status_code == 200
-    assert res.json() == {"message": "Hello, world!"}
+    assert res.json() == {
+        "message": "Hello, World! Welcome to the PSR Sandbox.",
+        "name": "world",
+    }
 
 
 def test_hello_named():
     res = client.get("/api/hello", params={"name": "Ada"})
     assert res.status_code == 200
-    assert res.json() == {"message": "Hello, Ada!"}
+    assert res.json() == {
+        "message": "Hello, Ada! Welcome to the PSR Sandbox.",
+        "name": "Ada",
+    }
 
 
 def test_index_served():

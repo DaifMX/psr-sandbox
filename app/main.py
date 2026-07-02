@@ -25,8 +25,12 @@ def get_version() -> dict[str, str]:
 
 @app.get("/api/hello")
 def hello(name: str = "world") -> dict[str, str]:
-    """Return a friendly greeting."""
-    return {"message": f"Hello, {name}!"}
+    """Return a friendly, personalized greeting."""
+    clean_name = name.strip() or "world"
+    return {
+        "message": f"Hello, {clean_name.title()}! Welcome to the PSR Sandbox.",
+        "name": clean_name,
+    }
 
 
 # Serve the tiny frontend from the static directory.

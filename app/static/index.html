@@ -5,43 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PSR Sandbox</title>
     <style>
+      :root {
+        --accent: #5b6cff;
+        --accent-dark: #3f4fd6;
+        --bg: #f6f7fb;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #6b7280;
+      }
+      * {
+        box-sizing: border-box;
+      }
       body {
-        font-family: system-ui, sans-serif;
-        max-width: 640px;
-        margin: 4rem auto;
-        padding: 0 1rem;
-        color: #1a1a1a;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #eef1ff 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+      .card {
+        width: min(92vw, 460px);
+        background: var(--card);
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 12px 40px rgba(31, 41, 92, 0.12);
+        text-align: center;
       }
       h1 {
-        margin-bottom: 0.25rem;
+        margin: 0 0 0.25rem;
+        font-size: 1.9rem;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        margin: 0 0 1.5rem;
+        color: var(--muted);
+        font-size: 0.95rem;
       }
       .badge {
         display: inline-block;
-        background: #eef;
-        border-radius: 6px;
-        padding: 2px 8px;
-        font-size: 0.9rem;
+        background: #eef0ff;
+        color: var(--accent-dark);
+        border-radius: 999px;
+        padding: 3px 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
       }
-      input,
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1.75rem;
+      }
+      input {
+        flex: 1;
+        font-size: 1rem;
+        padding: 0.65rem 0.85rem;
+        border: 1px solid #d7dae5;
+        border-radius: 10px;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(91, 108, 255, 0.18);
+      }
       button {
         font-size: 1rem;
-        padding: 0.5rem;
+        font-weight: 600;
+        padding: 0.65rem 1.2rem;
+        border: none;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.05s;
+      }
+      button:hover {
+        background: var(--accent-dark);
+      }
+      button:active {
+        transform: translateY(1px);
       }
       #greeting {
-        margin-top: 1rem;
+        margin: 1.5rem 0 0;
+        min-height: 1.5rem;
         font-weight: 600;
+        color: var(--accent-dark);
       }
     </style>
   </head>
   <body>
-    <h1>PSR Sandbox</h1>
-    <p>Version: <span class="badge" id="version">loading…</span></p>
+    <main class="card">
+      <h1>PSR Sandbox</h1>
+      <p class="subtitle">
+        Version <span class="badge" id="version">loading…</span>
+      </p>
 
-    <div>
-      <input id="name" type="text" placeholder="your name" value="world" />
-      <button id="greet">Greet</button>
-    </div>
-    <p id="greeting"></p>
+      <div class="controls">
+        <input id="name" type="text" placeholder="your name" value="world" />
+        <button id="greet">Greet</button>
+      </div>
+      <p id="greeting"></p>
+    </main>
 
     <script>
       async function loadVersion() {
@@ -58,6 +124,9 @@
       }
 
       document.getElementById("greet").addEventListener("click", greet);
+      document.getElementById("name").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") greet();
+      });
       loadVersion();
     </script>
   </body>
