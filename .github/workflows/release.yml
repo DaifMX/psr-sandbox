@@ -30,8 +30,18 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install python-semantic-release
+        run: pip install "python-semantic-release>=9,<10"
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Python Semantic Release
         id: release
-        uses: python-semantic-release/python-semantic-release@v9
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          semantic-release version
+          semantic-release publish
