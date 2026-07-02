@@ -1,6 +1,18 @@
 # CHANGELOG
 
 
+## v0.2.0 (2026-07-02)
+
+### Features
+
+- **api**: Enrich hello greeting and polish frontend UI
+  ([`081d1de`](https://github.com/DaifMX/psr-sandbox/commit/081d1de682ad8fd95fe0d02a56181e391f670d8e))
+
+Return a personalized, title-cased greeting with a welcome message and the resolved name. Redesign
+  the frontend as a centered card with a gradient background, styled inputs/buttons, and
+  Enter-to-greet support.
+
+
 ## v0.1.0 (2026-07-02)
 
 ### Chores
