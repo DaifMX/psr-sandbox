@@ -1,0 +1,4 @@
+# Runtime dependencies for pip users.
+# Poetry users can ignore this file and run `poetry install` instead.
+fastapi>=0.111,<0.112
+uvicorn[standard]>=0.30,<0.31

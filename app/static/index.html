@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PSR Sandbox</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 640px;
+        margin: 4rem auto;
+        padding: 0 1rem;
+        color: #1a1a1a;
+      }
+      h1 {
+        margin-bottom: 0.25rem;
+      }
+      .badge {
+        display: inline-block;
+        background: #eef;
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-size: 0.9rem;
+      }
+      input,
+      button {
+        font-size: 1rem;
+        padding: 0.5rem;
+      }
+      #greeting {
+        margin-top: 1rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PSR Sandbox</h1>
+    <p>Version: <span class="badge" id="version">loading…</span></p>
+
+    <div>
+      <input id="name" type="text" placeholder="your name" value="world" />
+      <button id="greet">Greet</button>
+    </div>
+    <p id="greeting"></p>
+
+    <script>
+      async function loadVersion() {
+        const res = await fetch("/api/version");
+        const data = await res.json();
+        document.getElementById("version").textContent = data.version;
+      }
+
+      async function greet() {
+        const name = document.getElementById("name").value || "world";
+        const res = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
+        const data = await res.json();
+        document.getElementById("greeting").textContent = data.message;
+      }
+
+      document.getElementById("greet").addEventListener("click", greet);
+      loadVersion();
+    </script>
+  </body>
+</html>
