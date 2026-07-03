@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.3.0 (2026-07-03)
+
+### Features
+
+- Dark mode toggle
+  ([`3a3f6df`](https://github.com/DaifMX/psr-sandbox/commit/3a3f6df7f537c552d07b0a6a4b4d10f7b245d58b))
+
+
 ## v0.2.0 (2026-07-02)
 
 ### Features
